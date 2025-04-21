@@ -1,0 +1,66 @@
+#snippets_table th:first-child,
+#snippets_table td:first-child {
+  width: 40px;
+  padding: 0;
+  text-align: center;
+}
+#snippets_table th:nth-child(2),
+#snippets_table td:nth-child(2) {
+  padding: 0 5px;
+}
+#snippets_table th,
+#snippets_table td {
+  vertical-align: middle !important;
+  padding: 8px 10px;
+}
+.sf-toggle-btn {
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+  border: 1px solid #666;
+  border-radius: 10px;
+  position: relative;
+  cursor: pointer;
+  background: #ccc;
+}
+.sf-toggle-btn:after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  transition: left 0.2s;
+}
+.sf-toggle-btn.active {
+  background: #0073aa;
+}
+.sf-toggle-btn.active:after {
+  left: 22px;
+}
+.sf-form-container {
+  background: #fff;
+  padding: 20px;
+  border: 1px solid #ccc;
+  width: 90%;
+  margin: 20px 0;
+}
+.sf-form-table th {
+  width: 150px;
+  text-align: left;
+  padding: 8px 10px 8px 0;
+  vertical-align: top;
+}
+.sf-form-table td {
+  padding: 5px 0;
+  vertical-align: top;
+}
+.sf-fullwidth {
+  width: 100%;
+}
+.CodeMirror {
+  border: 1px solid #ddd;
+  min-height: 150px;
+}

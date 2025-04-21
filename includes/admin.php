@@ -116,13 +116,57 @@ function sf_all_snippets_page() {
     <div class="wrap">
         <?php sf_admin_nav(); ?>
         <style>
-            #snippets_table { margin-left: 0; }
-            #snippets_table th, #snippets_table td { vertical-align: middle !important; padding: 8px 10px; }
-            .sf-toggle-btn { display:inline-block;width:40px;height:20px;border:1px solid #666;border-radius:10px;position:relative;cursor:pointer;background:#ccc; }
-            .sf-toggle-btn:after { content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;transition:left .2s; }
-            .sf-toggle-btn.active { background:#0073aa; }
-            .sf-toggle-btn.active:after { left:22px; }
-            .sf-form-container { background:#fff;padding:20px;border:1px solid #ccc;width:90%;margin:20px 0; }
+            /* tighten up first two columns */
+            #snippets_table th:first-child,
+            #snippets_table td:first-child {
+                width: 40px;
+                padding: 0;
+                text-align: center;
+            }
+            #snippets_table th:nth-child(2),
+            #snippets_table td:nth-child(2) {
+                padding: 0 5px;
+            }
+            /* default cell padding */
+            #snippets_table th,
+            #snippets_table td {
+                vertical-align: middle !important;
+                padding: 8px 10px;
+            }
+            .sf-toggle-btn {
+                display:inline-block;
+                width:40px;
+                height:20px;
+                border:1px solid #666;
+                border-radius:10px;
+                position:relative;
+                cursor:pointer;
+                background:#ccc;
+            }
+            .sf-toggle-btn:after {
+                content:"";
+                position:absolute;
+                top:2px;
+                left:2px;
+                width:16px;
+                height:16px;
+                border-radius:50%;
+                background:#fff;
+                transition:left .2s;
+            }
+            .sf-toggle-btn.active {
+                background:#0073aa;
+            }
+            .sf-toggle-btn.active:after {
+                left:22px;
+            }
+            .sf-form-container {
+                background:#fff;
+                padding:20px;
+                border:1px solid #ccc;
+                width:90%;
+                margin:20px 0;
+            }
         </style>
         <h1>All Snippets</h1>
         <div class="sf-form-container">
@@ -190,12 +234,20 @@ function sf_all_snippets_page() {
         </div>
         <script>
         jQuery(function($){
-            $('#sf_select_all').click(function(){ $('input[name="bulk_ids[]"]').prop('checked', this.checked); });
+            $('#sf_select_all').click(function(){
+                $('input[name="bulk_ids[]"]').prop('checked', this.checked);
+            });
             $('.sf-toggle-btn').click(function(){
-                var btn=$(this), id=btn.data('id'), nonce=btn.data('nonce');
+                var btn = $(this), id = btn.data('id'), nonce = btn.data('nonce');
                 $.post(ajaxurl, { action:'sf_toggle', id:id, nonce:nonce }, function(res){
-                    if(res.success) btn.toggleClass('active inactive'); else alert('Error toggling status');
-                }).fail(function(){ alert('Server error'); });
+                    if ( res.success ) {
+                        btn.toggleClass('active inactive');
+                    } else {
+                        alert('Error toggling status');
+                    }
+                }).fail(function(){
+                    alert('Server error');
+                });
             });
         });
         </script>
